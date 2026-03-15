@@ -1,0 +1,31 @@
+package br.com.nsfatima.calendario.integration;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+@SpringBootTest
+@AutoConfigureMockMvc
+class SmokeCalendarFlowTest {
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    @Test
+    void shouldRunBasicCalendarJourney() throws Exception {
+        mockMvc.perform(post("/api/v1/eventos")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"titulo\":\"Evento Smoke\",\"inicio\":\"2026-03-16T10:00:00Z\",\"fim\":\"2026-03-16T11:00:00Z\"}"))
+                .andExpect(status().isCreated());
+
+        mockMvc.perform(get("/api/v1/eventos"))
+                .andExpect(status().isOk());
+    }
+}

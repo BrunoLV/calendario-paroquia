@@ -3,3 +3,22 @@
 
 # Ignore Gradle build output directory
 build
+
+# Java and Gradle artifacts
+.gradle/
+target/
+*.class
+*.jar
+bin/
+
+# Environment and logs
+*.log
+.env*
+
+# IDE and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp

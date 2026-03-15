@@ -1,0 +1,16 @@
+CREATE SCHEMA IF NOT EXISTS calendario;
+
+CREATE TABLE IF NOT EXISTS calendario.locais (
+    id UUID PRIMARY KEY,
+    nome VARCHAR(160) NOT NULL,
+    tipo VARCHAR(32) NOT NULL,
+    capacidade INTEGER,
+    ativo BOOLEAN NOT NULL DEFAULT TRUE
+);
+
+CREATE TABLE IF NOT EXISTS calendario.categorias (
+    id UUID PRIMARY KEY,
+    nome VARCHAR(160) NOT NULL,
+    descricao VARCHAR(2000),
+    ativo BOOLEAN NOT NULL DEFAULT TRUE
+);
